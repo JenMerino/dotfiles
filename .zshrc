@@ -238,6 +238,7 @@ shopt -s autocd # change to named directory
 #shopt -s dotglob
 #shopt -s histappend # do not overwrite history
 #shopt -s expand_aliases # expand aliases
+shopt -s HIST_IGNORE_DUPS
 
 #youtube-dl
 alias yta-aac="youtube-dl --extract-audio --audio-format aac "
@@ -361,7 +362,7 @@ ex ()
 alias rmgitcache="rm -r ~/.cache/git"
 
 # GIT
-alias gitdot='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME' 
+alias gitdot='/usr/bin/git --git-dir=$HOME/dotfiles.git/ --work-tree=$HOME'
 
 #moving your personal files and folders from /personal to ~
 alias personal='cp -Rf /personal/* ~'
@@ -377,6 +378,27 @@ neofetch
 
 # Alacritty
 #test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+cdUndoKey() {
+  popd      > /dev/null
+  zle       reset-prompt
+  echo
+  ls
+  echo
+}
+
+cdParentKey() {
+  pushd .. > /dev/null
+  zle      reset-prompt
+  echo
+  ls
+  echo
+}
+
+zle -N                 cdParentKey
+zle -N                 cdUndoKey
+bindkey '^[[5~'      cdParentKey
+bindkey '^[[1;3D'      cdUndoKey
 
 ####################################################
 ####################################################
@@ -472,11 +494,4 @@ ZSH_HIGHLIGHT_STYLES[arg0]='fg=#F8F8F2'
 ZSH_HIGHLIGHT_STYLES[default]='fg=#F8F8F2'
 ZSH_HIGHLIGHT_STYLES[cursor]='standout'
 
-echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
