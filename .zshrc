@@ -472,11 +472,4 @@ ZSH_HIGHLIGHT_STYLES[arg0]='fg=#F8F8F2'
 ZSH_HIGHLIGHT_STYLES[default]='fg=#F8F8F2'
 ZSH_HIGHLIGHT_STYLES[cursor]='standout'
 
-echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
