@@ -1,0 +1,91 @@
+XTerm*renderFont: true
+XTerm*faceName: xft:Fantasque Sans Mono, \
+                xft:JoyPixels:size=18, \
+                xft:Monospace:style=Medium:size=18   
+XTerm*faceSize: 14
+XTerm*utf8: 2
+XTerm*locale: true
+
+XTerm.vt100.translations: #override \n\
+  Ctrl <Key> j: smaller-vt-font() \n\
+  Ctrl <Key> k: larger-vt-font()
+
+
+
+! I like a LOT of scrollback...
+XTerm*savelines: 16384
+
+! double-click to select whole URLs :D
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+! URXVT Configuration
+URxvt*buffered: true
+URxvt*cursorBlink: true
+URxvt*underlineColor: yellow
+
+! Font to Fira Code Retina, 16px
+URxvt.font: xft:Fira Code Retina:style=Retina:pixelsize=16
+
+! Set Bold Font to Fira Code Bold, 16px
+URxvt.boldFont: xft:Fira Code:style=Bold:pixelsize:16
+
+! Set Italics Font to Fira Code Light, 16px
+URxvt.italicFont: xft:Fira Code:style=Light:pixelsize:16
+
+URxvt*borderless: 1
+URxvt*scrollBar: false
+URxvt*loginShell: true
+URxvt*secondaryScroll:  true    # Enable Shift-PageUp/Down in screen
+URxvt*saveLines: 5000
+URxvt*termName: rxvt-unicode
+URxvt.urlLauncher: firefox
+URxvt.matcher.button: 1
+URxvt.letterSpace: -1
+
+
+! COLORS FOR SXIV
+Sxiv.foreground:   #F8F8F2
+Sxiv.background:   #282A36
+Sxiv.font: Ubuntu:style=bold:size=18
+
+
+! FOR ALL OTHER PROGRAMS USE XRESOURCES
+! This includes xterm and urxvt
+! Dracula Xresources palette
+
+*.foreground:   #F8F8F2
+*.background:   #282A36
+*.cursorColor:  #F8F8F2
+
+! black
+*.color0:       #000000
+*.color8:       #4D4D4D
+
+! red
+*.color1:       #FF5555
+*.color9:       #FF6E67
+
+! green
+*.color2:       #50FA7B
+*.color10:      #5AF78E
+
+! yellow
+*.color3:       #F1FA8C
+*.color11:      #F4F99D
+
+! blue
+*.color4:       #BD93F9
+*.color12:      #CAA9FA
+
+! magenta
+*.color5:       #FF79C6
+*.color13:      #FF92D0
+
+! cyan
+*.color6:       #8BE9FD
+*.color14:      #9AEDFE
+
+! white
+*.color7:       #BFBFBF
+*.color15:      #E6E6E6
+
