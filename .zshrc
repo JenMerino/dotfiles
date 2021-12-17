@@ -88,9 +88,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='emacs'
+#   export EDITOR='vim'
 # else
-#   export EDITOR='emacs'
+#   export EDITOR='mvim'
 # fi
 
 # Compilation flags
@@ -99,6 +99,9 @@ source $ZSH/oh-my-zsh.sh
 
 ####   ARCOLINUX SETTINGS   ####
 
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 setopt GLOB_DOTS
 
 # If not running interactively, don't do anything
@@ -106,12 +109,12 @@ setopt GLOB_DOTS
 
 export HISTCONTROL=ignoreboth:erasedups
 
-# Make Doom Emacs the default editor
+# Make nano the default editor
 
 export EDITOR='emacs'
 export VISUAL='emacs'
 
-#PS1="\n \[blue]┌─────(\[\033[1;35m\]\u\[\033[0;34m\])─────(\[\033[1;32m\]\w\[\033[0;34m\]) \n └> \[\033[1;36m\]\$ \[\033[0m\]"
+#PS1='[\u@\h \W]\$ '
 
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
@@ -232,7 +235,7 @@ alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --
 alias vbm="sudo /usr/local/bin/arcolinux-vbox-share"
 
 #shopt
-shopt -s autocd # change to named directory
+#shopt -s autocd # change to named directory
 #shopt -s cdspell # autocorrects cd misspellings
 #shopt -s cmdhist # save multi-line commands in history as single line
 #shopt -s dotglob
@@ -299,6 +302,7 @@ alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local"
 alias keyfix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
 alias fix-key="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
 alias fix-sddm-config="/usr/local/bin/arcolinux-fix-sddm-config"
+alias fix-pacman-conf="/usr/local/bin/arcolinux-fix-pacman-conf"
 
 #maintenance
 alias big="expac -H M '%m\t%n' | sort -h | nl"
@@ -346,22 +350,22 @@ ex ()
 }
 
 #arcolinux applications
-# alias att="arcolinux-tweak-tool"
-# alias adt="arcolinux-desktop-trasher"
-# alias abl="arcolinux-betterlockscreen"
-# alias agm="arcolinux-get-mirrors"
-# alias amr="arcolinux-mirrorlist-rank-info"
-# alias aom="arcolinux-osbeck-as-mirror"
-# alias ars="arcolinux-reflector-simple"
-# alias atm="arcolinux-tellme"
-# alias avs="arcolinux-vbox-share"
-# alias awa="arcolinux-welcome-app"
+alias att="arcolinux-tweak-tool"
+alias adt="arcolinux-desktop-trasher"
+alias abl="arcolinux-betterlockscreen"
+alias agm="arcolinux-get-mirrors"
+alias amr="arcolinux-mirrorlist-rank-info"
+alias aom="arcolinux-osbeck-as-mirror"
+alias ars="arcolinux-reflector-simple"
+alias atm="arcolinux-tellme"
+alias avs="arcolinux-vbox-share"
+alias awa="arcolinux-welcome-app"
+
+#GIT
+alias gitdot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 #remove
 alias rmgitcache="rm -r ~/.cache/git"
-
-# GIT
-alias gitdot='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME' 
 
 #moving your personal files and folders from /personal to ~
 alias personal='cp -Rf /personal/* ~'
@@ -373,103 +377,28 @@ alias personal='cp -Rf /personal/* ~'
 
 # reporting tools - install when not installed
 # install neofetch
-neofetch
+neofetch | lolcat
+# install screenfetch
+#screenfetch
+# install ufetch-git
+#ufetch
+# install ufetch-arco-git
+#ufetch-arco
+# install arcolinux-paleofetch-git
+#paleofetch
+# install alsi
+#alsi
+# install arcolinux-bin-git - standard on ArcoLinux isos (or sfetch - smaller)
+#hfetch
+# install lolcat
+#sfetch | lolcat
 
-# Alacritty
-#test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)source /home/jemer/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Emacs
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
-####################################################
-####################################################
-##    Dracula Theme for zsh-syntax-highlighting   ##
-####################################################
-####################################################
-# https://github.com/zenorocha/dracula-theme
-#
-# Copyright 2021, All rights reserved
-#
-# Code licensed under the MIT license
-# http://zenorocha.mit-license.org
-#
-# @author George Pickering <@bigpick>
-# @author Zeno Rocha <hi@zenorocha.com>
-# Paste this files contents inside your ~/.zshrc before you activate zsh-syntax-highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main cursor)
-typeset -gA ZSH_HIGHLIGHT_STYLES
-# Default groupings per, https://spec.draculatheme.com, try to logically separate
-# possible ZSH_HIGHLIGHT_STYLES settings accordingly...?
-#
-# Italics not yet supported by zsh; potentially soon:
-#    https://github.com/zsh-users/zsh-syntax-highlighting/issues/432
-#    https://www.zsh.org/mla/workers/2021/msg00678.html
-# ... in hopes that they will, labelling accordingly with ,italic where appropriate
-#
-# Main highlighter styling: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
-#
-## General
-### Diffs
-### Markup
-## Classes
-## Comments
-ZSH_HIGHLIGHT_STYLES[comment]='fg=#6272A4'
-## Constants
-## Entitites
-## Functions/methods
-ZSH_HIGHLIGHT_STYLES[alias]='fg=#50FA7B'
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=#50FA7B'
-ZSH_HIGHLIGHT_STYLES[global-alias]='fg=#50FA7B'
-ZSH_HIGHLIGHT_STYLES[function]='fg=#50FA7B'
-ZSH_HIGHLIGHT_STYLES[command]='fg=#50FA7B'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=#50FA7B,italic'
-ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=#FFB86C,italic'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#FFB86C'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#FFB86C'
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#BD93F9'
-## Keywords
-## Built ins
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=#8BE9FD'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#8BE9FD'
-ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=#8BE9FD'
-## Punctuation
-ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#FF79C6'
-ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter-unquoted]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]='fg=#FF79C6'
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=#FF79C6'
-ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=#FF79C6'
-## Serializable / Configuration Languages
-## Storage
-## Strings
-ZSH_HIGHLIGHT_STYLES[command-substitution-quoted]='fg=#F1FA8C'
-ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter-quoted]='fg=#F1FA8C'
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#F1FA8C'
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument-unclosed]='fg=#FF5555'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#F1FA8C'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument-unclosed]='fg=#FF5555'
-ZSH_HIGHLIGHT_STYLES[rc-quote]='fg=#F1FA8C'
-## Variables
-ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument-unclosed]='fg=#FF5555'
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[assign]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[named-fd]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[numeric-fd]='fg=#F8F8F2'
-## No category relevant in spec
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#FF5555'
-ZSH_HIGHLIGHT_STYLES[path]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=#FF79C6'
-ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=#FF79C6'
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=#BD93F9'
-#ZSH_HIGHLIGHT_STYLES[command-substitution]='fg=?'
-#ZSH_HIGHLIGHT_STYLES[command-substitution-unquoted]='fg=?'
-#ZSH_HIGHLIGHT_STYLES[process-substitution]='fg=?'
-#ZSH_HIGHLIGHT_STYLES[arithmetic-expansion]='fg=?'
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument-unclosed]='fg=#FF5555'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[arg0]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[default]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[cursor]='standout'
+### CARDANO ###
+# export CARDANO_NODE_SOCKET_PATH="$HOME/cardano/db/node.socket"
+export CLI='docker run -it --entrypoint cardano-cli -e NETWORK=mainnet -e CARDANO_NODE_SOCKET_PATH=/ipc/node.socket -v cardano-node-ipc:/ipc inputoutput/cardano-node'
 
-source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Haskell
+export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
